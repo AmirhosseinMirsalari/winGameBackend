@@ -19,7 +19,7 @@ Developed by [Node.js](https://nodejs.org/) , [Express.js](https://expressjs.com
 
 1. Clone the project
   ```bash
-  git clone https://github.com/digita-webshop/digita-webshop-backend.git
+  git clone https://github.com/AmirhosseinMirsalari/winGameBackend.git
   ```
 2. Install project dependencies
   ```bash
@@ -45,4 +45,4 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-This project is open source and available under the [GPL-3.0 license](https://github.com/digita-webshop/digita-webshop-backend/blob/main/LICENSE).
+This project is open source 
