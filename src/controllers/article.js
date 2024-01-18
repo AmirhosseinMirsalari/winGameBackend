@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 const controller = require("./controller");
 const createError = require("../utils/httpError");
 

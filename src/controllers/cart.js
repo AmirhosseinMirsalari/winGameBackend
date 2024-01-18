@@ -1,6 +1,7 @@
 const controller = require("./controller");
 const createError = require("../utils/httpError");
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 module.exports = new (class extends controller {
   async addToCart(req, res) {
     const { productId, quantity, name, price } = req.body;
@@ -14,7 +15,9 @@ module.exports = new (class extends controller {
 
     if (cart) {
       //cart exists for user
-      let itemIndex = cart.products.findIndex((p) => p.productId.toString() === productId._id);
+      let itemIndex = cart.products.findIndex(
+        (p) => p.productId.toString() === productId._id
+      );
 
       if (itemIndex > -1) {
         //product exists in the cart, update the quantity
@@ -28,7 +31,9 @@ module.exports = new (class extends controller {
       try {
         cart = await cart.save();
       } catch (err) {
-        return next(createError(500, "Could not update cart, please try again."));
+        return next(
+          createError(500, "Could not update cart, please try again.")
+        );
       }
       return this.response({
         res,
@@ -64,7 +69,9 @@ module.exports = new (class extends controller {
     if (cart) {
       //cart exists for user
       cartItems.map(({ productId, quantity }) => {
-        let itemIndex = cart.products.findIndex((p) => p.productId.toString() === productId._id);
+        let itemIndex = cart.products.findIndex(
+          (p) => p.productId.toString() === productId._id
+        );
 
         if (itemIndex > -1) {
           //product exists in the cart, update the quantity
@@ -73,13 +80,20 @@ module.exports = new (class extends controller {
           cart.products[itemIndex] = productItem;
         } else {
           //product does not exists in cart, add new item
-          cart.products.push({ productId, quantity, name: productId.title, price: productId.price });
+          cart.products.push({
+            productId,
+            quantity,
+            name: productId.title,
+            price: productId.price,
+          });
         }
       });
       try {
         cart = await cart.save();
       } catch (err) {
-        return next(createError(500, "Could not update cart, please try again."));
+        return next(
+          createError(500, "Could not update cart, please try again.")
+        );
       }
       return this.response({
         res,
@@ -126,7 +140,9 @@ module.exports = new (class extends controller {
     try {
       cart = await this.Cart.findOne({ userId });
 
-      let filteredCart = await cart.products.filter((p) => p._id.toString() !== productId?.productId);
+      let filteredCart = await cart.products.filter(
+        (p) => p._id.toString() !== productId?.productId
+      );
       cart.products = filteredCart;
       await cart.save();
     } catch (err) {

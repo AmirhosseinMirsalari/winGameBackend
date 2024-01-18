@@ -1,5 +1,6 @@
 /* Importing the required modules. */
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 const controller = require("./controller");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
@@ -72,7 +73,7 @@ module.exports = new (class extends controller {
       return next(createError(400, "Invalid id"));
     }
 
-/* This is a middleware function that is checking if the user is a superAdmin or not. If the user is
+    /* This is a middleware function that is checking if the user is a superAdmin or not. If the user is
 not a superAdmin, then it is checking if the user is trying to update his own profile or not. If the
 user is not trying to update his own profile, then it is returning an error. */
     const userId = req.user.id;

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 const controller = require("./controller");
 const createError = require("../utils/httpError");
 
@@ -82,7 +83,9 @@ module.exports = new (class extends controller {
       cart.products = [];
       await cart.save();
     } catch (err) {
-      return next(createError(500, "removing cart items  failed, please try again."));
+      return next(
+        createError(500, "removing cart items  failed, please try again.")
+      );
     }
 
     this.response({
@@ -100,7 +103,9 @@ module.exports = new (class extends controller {
     try {
       order = await this.Order.findById(req.params.oid).populate("userId");
     } catch (err) {
-      return next(createError(500, "Could not delete order, please try again."));
+      return next(
+        createError(500, "Could not delete order, please try again.")
+      );
     }
 
     if (!order) {
@@ -108,7 +113,9 @@ module.exports = new (class extends controller {
     }
 
     if (order.userId.id !== req.user.id) {
-      return next(createError(401, "You are not authorized to delete this order"));
+      return next(
+        createError(401, "You are not authorized to delete this order")
+      );
     }
 
     try {

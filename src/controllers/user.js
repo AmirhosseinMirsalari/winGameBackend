@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 const controller = require("./controller");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
