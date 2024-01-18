@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
 
 const addressSchema = new mongoose.Schema(
   {

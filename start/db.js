@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
+
 const debug = require("debug")("app:start:db");
 const config = require("config");
 

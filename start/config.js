@@ -3,7 +3,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 
 module.exports = function (app, express) {
-  app.use(cors({ credentials: true, origin: ["https://wingame.iran.liara.run", "http://localhost:3000","https://exquisite-gelato-3f96ab.netlify.app"] }));
+  app.use(cors({ credentials: true, origin: ["https://wingame.iran.liara.run", "https://localhost:3000","https://exquisite-gelato-3f96ab.netlify.app"] }));
   app.use(cookieParser());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));

@@ -1,7 +1,7 @@
 const controller = require("./controller");
 const createError = require("../utils/httpError");
 const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
+
 module.exports = new (class extends controller {
   async addToCart(req, res) {
     const { productId, quantity, name, price } = req.body;
